@@ -13,12 +13,14 @@ void UTankMovementComponent::Initialize(UTankTrack* LeftTrackToSet, UTankTrack* 
 
 void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
 {
-	// No need to call Suber as we're replacing the functionality
-	auto TankName = GetOwner()->GetName();
-	auto MoveVelocityName = MoveVelocity.ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityName)
-}
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntension = MoveVelocity.GetSafeNormal();
 
+	auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntension);
+
+	IntendMoveForward(ForwardThrow);
+
+}
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
 	if (!LeftTrack || !RightTrack)
@@ -35,4 +37,15 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 	RightTrack->SetThrottle(-Throw);
 }
 
+//virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
 
+
+
+//auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+//auto AIForwardIntension = MoveVelocity.GetSafeNormal();
+//
+//auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntension);
+//
+//IntendMoveForward(ForwardThrow);
+//
+//}
