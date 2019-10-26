@@ -36,6 +36,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ReloadTimeInSeconds = 3;
 
+	//TODO
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000 ;
 
