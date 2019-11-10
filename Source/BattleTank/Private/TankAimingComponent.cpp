@@ -47,9 +47,9 @@ void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickTy
 		FiringState = EFiringState::Locked;
 	}
 
-	if (FiringState == EFiringState::OutOfAmmo && (FPlatformTime::Seconds() - LastFireTime) >= ReloadTimeInSeconds)
+	if (FiringState == EFiringState::OutOfAmmo && (FPlatformTime::Seconds() - LastFireTime) >= ReplenishmentAmmoTime)
 	{
-		RoundsLeft = 3;
+		RoundsLeft = MaxAmmo;
 	}
 }
 

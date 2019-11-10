@@ -69,7 +69,12 @@ private:
 	float LaunchSpeed = 4000;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	int RoundsLeft = 3;
+	int MaxAmmo = 5;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	double ReplenishmentAmmoTime = 5;
+
+	int RoundsLeft = MaxAmmo;
 
 	double LastFireTime = 0;
 	
